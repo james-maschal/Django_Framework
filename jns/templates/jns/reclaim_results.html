@@ -1,0 +1,70 @@
+{% load static %}
+{% if switch %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bad Interfaces</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <div>
+            <p class="header">Reclaim Results</p>
+            <hr/>
+        </div>
+        <div align="center">
+            <table >
+                <tr>
+                    <th align="center">Switch</th>
+                    <th align="center">Interface</th>
+                    <th align="center">Description</th>
+                    <th align="center">Date</th>
+                </tr>
+            {% for interface in switch %}
+                <tr valign="Top">
+                    <td valign="right">{{ interface.switch }}</td>
+                    <td valign="right">{{ interface.int_name }}</td>
+                    <td valign="right">{{ interface.int_desc }}</td>
+                    <td valign="right">{{ interface.report_date }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div align="center">
+            <p><a class="link" href=#top>back to top</a></p>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:search' %}" >
+                <button class="button-link" type="submit">Back to Port Reclaim</button>
+            </form>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:home' %}" >
+                <button class="button-link" type="submit">Back to Home Screen</button>
+            </form>
+        </div>
+    </body>
+{% else %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Port Reclaim Error</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <div class="header">
+            <p>No interfaces are available. This switch is unavailable for reclaim or was spelled incorrectly.</p>
+            <br/>
+            <p>Please ensure the switch name is spelled correctly, and in all caps.</p>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:search' %}" >
+                <button class="button-link" type="submit">Back to Port Reclaim</button>
+            </form>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:home' %}" >
+                <button class="button-link" type="submit">Back to Home Screen</button>
+            </form>
+        </div>
+</body>
+{% endif %}

@@ -1,0 +1,140 @@
+body {
+    background-color: #202529;
+}
+
+.center50 {
+    margin: auto;
+    width: 100%;
+}
+
+.center {
+    margin: auto;
+    width: 30%;
+}
+.padding {
+    padding:1%;
+}
+
+.padding3 {
+    padding:3%;
+}
+
+.maintext {
+    font-family: 'Lucida Console', monospace;
+    font-size: 1.25em;
+    color: #fff;
+    text-align: center;
+}
+
+.subtext {
+    font-family: 'Lucida Console', monospace;
+    font-size: 1em;
+    color: #fff;
+}
+
+.header {
+    font-family: 'Lucida Console', monospace;
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.button-link {
+    display:block;
+    padding: 20px;
+    font-family:'Lucida Console', monospace;
+    font-size: 1.5em;
+    background-color: #212529;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.button-link:hover {
+    background-color: #41474e;
+}
+
+.buttonsubmit {
+    display:block;
+    padding: 20px;
+    font-family:'Lucida Console', monospace;
+    font-size: 1.25em;
+    background-color: #212529;    
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.buttonsubmit:hover {
+    background-color: #41474e;
+}
+
+.textinput {
+    background-color: #212529;
+    border: 1px solid #fff;
+    color:#fff;
+    width: 200px;
+    height:20px;
+    margin: auto;
+    display:block;
+}
+
+.listheader {
+    font-family:'Lucida Console', monospace;
+    text-align:center;
+    font-size: 1.25em;
+    color: #fff;
+    width: 50%;
+    padding-top: 2%;
+    margin: auto;
+}
+
+.listtext {
+    font-family:'Lucida Console', monospace;
+    text-align:left;
+    font-size: 1em;
+    border-top: 1px solid #fff;
+    color: #fff;
+    width: 30%;
+    margin: auto;
+    padding:1%;
+}
+
+table {
+    padding-bottom: 30px;
+    padding-top: 20px;
+}
+
+th, td {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    border-collapse: collapse;
+    border-style: 1px solid #fff;
+    color: #d8d5d5;
+    background-color: #2e343a;
+}
+
+.link{
+    font-family:'Lucida Console', monospace;
+    font-size: 1em;
+    background-color: #212529;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+  
+.link:hover {
+    background-color: #395d85;
+}

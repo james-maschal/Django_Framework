@@ -1,0 +1,105 @@
+{% load static %}
+{% if switch %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ labels_switch }}</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+	<div align="middle" id="container" style="max-width: 70%; margin:auto; padding-bottom: 30px;">
+		<canvas id="temp_search"></canvas>
+	</div>
+	<script>
+		const ctx = document.getElementById('temp_search').getContext('2d');
+		const temp_search = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: [{% for item in labels_date %}"{{ item }}",{% endfor %}],
+				  datasets: [{
+					  label: '{{ labels_switch }}',
+					  data: [{% for item in data_temp %}"{{ item }}",{% endfor %}],
+					  borderColor: '#4b99da',
+				  }]
+			},
+			options: {
+				plugins:{
+					legend:{
+						display: true,
+						position: 'bottom',
+						labels: {
+							color: '#ffffff'
+						}
+					},
+					title: {
+						display: true,
+						text: 'Switch Temperature History',
+						color: '#ffffff',
+						font: {
+							size: 18
+						},
+						padding: {
+							top: 30,
+							bottom: 30
+						}
+					}
+				},
+				repsonsive: true,
+				elements: {
+					point: {backgroundColor:'#ffffff'}
+				},
+				layout: {
+					padding: {
+						top: 40,
+					}
+				},
+				scales: {
+					y: {
+						grid: { color: '#bbbbbb'},
+						ticks: { color: '#ffffff', beginAtZero: true}
+					},
+					x: {
+						grid: { color: '#bbbbbb'},
+						ticks: { color: '#ffffff', beginAtZero: true}
+					}
+				}
+			}
+		});
+	</script>
+	<div align="center">
+		<form action="{% url 'jns:temp_search' %}" >
+			<button class="button-link" type="submit">Back to Temperature History</button>
+		</form>
+	</div>
+    <div align="center">
+        <form action="{% url 'jns:home' %}" >
+            <button class="button-link" type="submit">Back to Home Screen</button>
+        </form>
+    </div>
+</body>
+</html>
+{% else %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chart Error</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+	<div>
+    	<h1 class="header">No information available.<br/> Either that switch is unavailable or the hostname was entered incorrectly.
+		<br/><br/>Please ensure the switch name is spelled correctly.</h1>
+	</div>
+	<div align="center">
+		<form action="{% url 'jns:temp_search' %}" >
+			<button class="button-link" type="submit">Back to Temperature History</button>
+		</form>
+	</div>
+    <div align="center">
+        <form action="{% url 'jns:home' %}" >
+            <button class="button-link" type="submit">Back to Home Screen</button>
+        </form>
+    </div>
+</body>
+{% endif %}

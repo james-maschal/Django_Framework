@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Temperature History</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    </head>
+    <body>
+    <div>
+        <p class="header">Switch Inlet Temperature History</p>
+        <hr/>
+        <div class="maintext">
+            <p>Enter the switch you wish to see the temperature history of.</p>
+            <p>Then, enter the number of days back you wish to see.</p>
+            <p>Please ensure the switch name is spelled correctly.</p>
+        </div>
+    </div>
+    <div align="center" style="padding: 20px">
+        <form action="{% url 'jns:temp_list' %}" >
+            <button class="button-link" type="submit">Full Device List</button>
+        </form>
+    </div>
+    <div class="center padding">
+        <form method="POST">
+        {% csrf_token %}
+            <div class="subtext">
+                Swtich:
+            </div>
+            <div>
+                <input class="textinput" type="text" name="textfield" required>
+            </div>
+            </br>
+            <div class="subtext">
+                Start Date:
+            </div>
+            <div>
+                <input class="textinput" type="date" name="textfield2" required>
+            </div>
+            </br>
+            <div class="subtext">
+                End Date:
+            </div>
+            <div>
+                <input class="textinput" type="date" name="textfield3" required>
+            </div>
+            </br>
+            <div align="center">
+                <button class="buttonsubmit" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div align="center">
+        <form action="{% url 'jns:home' %}" >
+            <button class="button-link" type="submit">Back to Home Screen</button>
+        </form>
+    </div>
+    </body>

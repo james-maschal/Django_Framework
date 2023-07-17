@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>{{ labels_switch }}</title>
+    <script src=" https://cdn.jsdelivr.net/npm/cytoscape@3.24.0/dist/cytoscape.min.js "></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  </head>
+  <body>
+    <div id="cy"></div>
+    <div class="button-container">
+      <form action="{% url 'jns:topology' %}" >
+        <button type="submit">Back to Network Topology</button>
+      </form>
+      <form action="{% url 'jns:home' %}" >
+        <button type="submit">Back to Home Screen</button>
+      </form>
+    </div>
+    <script>
+        var cy = cytoscape({
+          container: document.getElementById('cy'),
+          
+          elements:[
+          {% for data in api_data %}
+          { data: { id: "{{ data.id_val }}", label: "{{ data.display_val }}\n\n{{ data.peer_val }}"} },
+          { data: { id: "{{ data.id_val }}-{{ data.peer_val }}", source: "{{ data.id_val }}", target: "{{ device_id }}" } },
+          {% endfor %}
+          
+          { data: {id: "{{ device_id }}", label: "{{ labels_switch }}" } },
+          ],
+          
+          style: [
+          {
+            selector: 'node',
+            style: {
+              'background-color': '#3775a8',
+              'label': 'data(label)',
+              'text-background-opacity': 1,
+              'text-background-color': '#3c444d',
+              'text-background-shape': 'roundrectangle',
+              'text-background-padding': '10px',
+              'color': '#ffffff',
+              'font-size': '1.25em',
+              'text-wrap': 'wrap',
+            }
+          },
+          {
+            selector: 'edge',
+            style: {
+              'width': 1,
+              'line-color': '#4b99da',
+              'curve-style': 'bezier'
+            }
+          }],
+        });
+        var layout = cy.layout({
+          name: 'grid',
+          avoidOverlap: true,
+          nodeDimensionsIncludeLabels: true,
+          });
+        layout.run();
+        cy.on('click', 'node', function(){
+          if (this.id() === "{{ device_id }}") {
+            try { // your browser may block popups
+              window.open("https://YOUR-SERVER-HERE/dcim/devices/" + this.data('id'));
+            } catch(e){ // fall back on url change
+              window.location.href = "https://YOUR-SERVER-HERE/dcim/devices/" + this.data('id');
+            }
+          } 
+          else {
+            try { // your browser may block popups
+              window.open("https://YOUR-SERVER-HERE/dcim/interfaces/" + this.data('id') + "/trace/");
+            } catch(e){ // fall back on url change
+              window.location.href = "https://YOUR-SERVER-HERE/dcim/interfaces/" + this.data('id') + "/trace/";
+            }
+          }
+        });
+        
+    </script>
+  </body>
+</html>

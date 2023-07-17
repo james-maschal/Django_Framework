@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SFP History</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    </head>
+    <body>
+    <div>
+        <p class="header">SFP Optical Level History</p>
+        <hr/>
+        <div class="maintext">
+            <p>Enter the switch and interface you wish to see the history of.</p>
+            <p>Please ensure the switch name is spelled correctly.</p>
+        </div>
+    </div>
+    <div class="listheader" >
+      Interface Examples:
+  </div>
+    <div class="listtext">
+      <li>TenGigabitEthernet: Te1/24</li>
+      <li>TwentyFiveGigE:     Twe5/0/21</li>
+    </div>
+    
+    <div class="center padding">
+        <form method="POST">
+        {% csrf_token %}
+            <div class="subtext">
+                Swtich:
+            </div>
+            <div>
+                <input class="textinput" type="text" name="textfield" required>
+            </div>
+            </br>
+            <div class="subtext">
+                Interface:
+            </div>    
+            <div>
+                <input class="textinput" type="text" name="textfield2" required>
+            </div>    
+            </br>
+            <div align="center">
+                <button class="buttonsubmit" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div align="center">
+        <form action="{% url 'jns:home' %}" >
+            <button class="button-link" type="submit">Back to Home Screen</button>
+        </form>
+    </div>
+    </body>

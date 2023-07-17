@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bad Interfaces</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    </head>
+    <body>
+    <div>
+        <p class="header">Bad Interfaces Home</p>
+        <hr/>
+    </div>
+    <div class="maintext">
+        <p>Enter the rx level threshold you wish to search for (between 0 and -29).</p>
+    </div>
+    <div class="center padding" >
+        <form method="POST">
+            {% csrf_token %}
+            <div align="center" class="subtext">
+                RX Level:
+            </div>
+            <div>
+                <input class="textinput" type="number" minlength="1" name="textfield" required>
+            </div>
+            </br>
+            <div align="center">
+                <button class="buttonsubmit" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div align="center">
+        <form action="{% url 'jns:home' %}" >
+            <button class="button-link" type="submit">Back to Home Screen</button>
+        </form>
+    </div>
+</body>

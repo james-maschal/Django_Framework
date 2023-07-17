@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bad Interfaces</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <div>
+            <p class="header">Port Reclaim</p>
+            <hr/>
+        </div>
+        <div>
+            <p class="maintext">Enter the switch you wish to perform port reclaim on.</p>
+            <br/>
+            <p class="maintext">Please ensure the switch name is spelled correctly, and in all caps.</p>
+        </div>
+        <div class="center padding" >
+            <form style="text-align: center;"  method="POST">
+                {% csrf_token %}
+                <div align="center" class="subtext">
+                    Switch:
+                </div>
+                <div>
+                    <input class="textinput" type="text" minlength="1" name="textfield" required>
+                </div>
+                    </br>
+                <div align="center">
+                    <button class="buttonsubmit" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:home' %}" >
+                <button class="button-link" type="submit">Back to Home Screen</button>
+            </form>
+        </div>
+    </body>

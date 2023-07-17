@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JNS Home</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <div>
+            <p class="header">Jim's Networking Shop<br/> (JNS)</p>
+            <hr/>
+        </div>
+        <div class="maintext">
+            <p>This is the main page for tools created by James Maschal</p>
+        </div>
+        <div class="padding"></div>
+        <div align="center">
+            <form action="{% url 'jns:faulty' %}">
+            <button class="button-link" type="submit">Bad Fiber Interfaces</button>
+            </form>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:search' %}">
+            <button class="button-link" type="submit">Port Reclaim</button>
+            </form>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:sfp_search' %}">
+            <button class="button-link" type="submit">SFP History</button>
+            </form>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:temp_search' %}">
+            <button class="button-link" type="submit">Switch Temperature History</button>
+            </form>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:topology' %}">
+            <button class="button-link" type="submit">Network Topology</button>
+            </form>
+        </div>
+    </body>
+    </html>

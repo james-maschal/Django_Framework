@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Switch Temperature List</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+        <style>
+            .table-button {
+                background-color: #2e343a;
+                color: #4b99da;
+                border: 0px;
+                font-size: 1em;
+            }
+
+            .table-button:hover {
+                background-color: #515c68;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <p class="header">Full Device List</p>
+            <hr/>
+        </div>
+        <div align="center">
+            <table >
+                <tr>
+                    <th align="center">Switch</th>
+                    <th align="center">Temperature</th>
+                    <th align="center">Date of Last Record</th>
+                </tr>
+            {% for interface in switch %}
+                <tr valign="Top">
+                    <td valign="right">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="submit" name="temp_history_submit" value="{{ interface.switch }}" class="table-button">
+                        </form></td>
+                    <td valign="right">{{ interface.temperature }}</td>
+                    <td valign="right">{{ interface.date }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div align="center">
+            <p><a class="link" href=#top>back to top</a></p>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:temp_search' %}" >
+                <button class="button-link" type="submit">Temperature History</button>
+            </form>
+        </div>
+        <div align="center">
+            <form action="{% url 'jns:home' %}" >
+                <button class="button-link" type="submit">Back to Home Screen</button>
+            </form>
+        </div>
+    </body>
