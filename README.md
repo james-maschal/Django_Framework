@@ -73,8 +73,8 @@ sqlparse     0.4.3
 
 - Copy /opt/django_framework/jns.conf to the extra configuration file location for Apache (for RHEL, it is /etc/httpd/conf.d/)
 
-- Verify Apache can connect to your databse with `sudo getsebool httpd_can_network_connect_db`
-    - If this is set to "off", enter `sudo setsebool -P httpd_can_network_connect_db on`
+- Verify Apache can connect to your databse with `sudo getsebool httpd_can_network_connect_db` and `sudo getsebool httpd_can_network_connect`
+    - If this is set to "off", enter `sudo setsebool -P httpd_can_network_connect_db on` and `sudo setsebool -P httpd_can_network_connect on`
 
 - Start Apache server with "`sudo systemctl start httpd.service`"
 
